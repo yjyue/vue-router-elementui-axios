@@ -1,0 +1,132 @@
+html {
+    font-family: "Helvetica Neue", Helvetica, STHeiTi, sans-serif;
+    -ms-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%
+}
+body {
+    font-family: "Source Sans Pro", "微软雅黑","Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.42857143;
+    color: #58666e;
+    background-color: #F4F4F4!important;
+}
+
+html, body, div, object, iframe, applet, object, h1, h2, h3, h4, h5, h6, p, blockquote, pre, address, dl, dt, dd, ol, ul, li, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, menu, nav, output, ruby, section, summary, time, mark, audio, video, progress {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    vertical-align: baseline
+}
+html,body,#app{
+    width: 100%;
+    height: 100%;
+}
+
+a {
+    text-decoration: none;
+    -webkit-touch-callout: none;
+    background-color: transparent;
+    color: #000;
+    cursor: pointer;
+}
+table {
+    border-collapse: collapse;
+    border-spacing: 0
+}
+li {
+    list-style: none
+}
+
+audio, canvas, progress, video {
+    display: inline-block
+}
+
+a:active, a:hover {
+    outline: 0;
+}
+a:hover,a:link,a:visited,a:active{
+    text-decoration: none;
+}
+b, strong {
+    font-weight: bold
+}
+
+img {
+    border: 0;
+    -webkit-touch-callout: none;
+}
+
+hr {
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+    height: 0
+}
+
+button, optgroup, select, textarea {
+    color: inherit;
+    font: inherit;
+    margin: 0;
+    -webkit-appearance: none;
+    outline: none;
+    line-height: normal
+}
+textarea{
+    resize: none;
+}
+button {
+    overflow: visible
+}
+
+button, select {
+    text-transform: none
+}
+
+button, html input[type="button"], input[type="reset"], input[type="submit"] {
+    -webkit-appearance: button;
+    cursor: pointer
+}
+/*input[type="button"]{*/
+    /*border: none;*/
+/*}*/
+button[disabled], html input[disabled] {
+    cursor: not-allowed;
+    background-color: #ccc;
+    color: #fff;
+    border: 1px solid #ccc;
+}
+
+button::-moz-focus-inner, input::-moz-focus-inner {
+    border: 0;
+    padding: 0
+}
+
+input {
+    line-height: normal
+}
+
+input[type="checkbox"], input[type="radio"] {
+    box-sizing: border-box;
+    padding: 0
+}
+input[type="search"] {
+    -webkit-appearance: textfield;
+    -moz-box-sizing: content-box;
+    -webkit-box-sizing: content-box;
+    box-sizing: content-box
+}
+
+input[type="search"]::-webkit-search-cancel-button, input[type="search"]::-webkit-search-decoration {
+    -webkit-appearance: none
+}
+
+input[type="number"]::-webkit-inner-spin-button, input[type="number"]::-webkit-outer-spin-button {
+    height: auto
+}
+
+textarea {
+    overflow: auto
+}
+i, em {
+    font-style: normal;
+}

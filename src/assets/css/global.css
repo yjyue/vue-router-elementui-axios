@@ -1,0 +1,23 @@
+/* 表格样式 */
+.mian-container{
+    margin-bottom: 15px;
+    background: #ffffff;
+    padding:10px;
+    padding-bottom: 0;
+  }
+  .from-filter{
+    display: flex;
+  }
+  .from-filter .from-item{
+    width: 200px;
+    margin-right: 10px;
+    flex-wrap:nowrap;
+  }
+  .from-filter .el-form-item{
+    margin-bottom: 12px;
+  }
+  .table-box{
+    padding: 10px;
+    background: #ffffff;
+  }
+/* 表格样式   end------------------------*/
