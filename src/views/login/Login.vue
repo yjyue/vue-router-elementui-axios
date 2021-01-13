@@ -4,13 +4,13 @@
         <div class="title-container">
           <h3 class="title">系统登录</h3>
         </div>
-        <el-form-item prop="username">
-          <el-input v-model="loginForm.username" placeholder="Username" type="text" autocomplete="on"></el-input>
+        <el-form-item prop="userName">
+          <el-input prefix-icon="el-icon-search" v-model="loginForm.userName" placeholder="Username" type="text" autocomplete="on"></el-input>
         </el-form-item>
         <el-form-item prop="password">
-          <el-input v-model="loginForm.password" placeholder="password" type="password" autocomplete="on"></el-input>
+          <el-input prefix-icon="el-icon-search" v-model="loginForm.password" placeholder="password" type="password" autocomplete="on"></el-input>
         </el-form-item>
-        <el-form-item>
+        <el-form-item class="login-btns">
           <el-button type="primary" style="width:100%" @click="loginSubmit('loginForm')">登录</el-button>
         </el-form-item>
         
@@ -42,13 +42,14 @@ export default {
     return{
       labelPosition: 'left',
       loginForm: {
-        username: 'admin',
-        password: '123456'
+        userName: 'admin',
+        password: 'Win2008!'
       },
       loginRules: {
-        username: [{ required: true, trigger: 'blur', validator: validateUsername }],
+        userName: [{ required: true, trigger: 'blur', validator: validateUsername }],
         password: [{ required: true, trigger: 'blur', validator: validatePassword }]
       },
+     
     }
   },
   methods:{
@@ -56,7 +57,31 @@ export default {
       this.$refs[formName].validate((valid) => {
           if (valid) {
             console.log('验证通过 可以提交登录')
-            this.$router.push({name:'home'}) 
+            // /userapi/app_services/userlogin
+            // let getUserRole = this.loginForm.userName === 'admin'?'admin':'user'
+
+            this.$http.post('/userapi/app_services/userlogin',this.loginForm).then((result) => {
+              
+              const res = result.data;
+              console.log(res)
+              if(res.result == true){
+                console.log(res.msg.token)
+                // 存储菜单
+                // this.$store.commit('setMenuList',this.menuList)
+                //存储用户名
+                this.$store.commit('menuRouteLoaded', false) // 要求重新加载导航菜单
+                this.$store.commit('setUsername', this.loginForm.userName)
+                sessionStorage.setItem('setUsername',this.loginForm.userName)
+                sessionStorage.setItem('token',res.msg.token)
+
+                this.$router.push({path:'/home'}) 
+              }
+
+            }).catch((err) => {
+              
+            });
+            // console.log(this.menuList)
+            
           } else {
             console.log('error submit!!');
             return false;

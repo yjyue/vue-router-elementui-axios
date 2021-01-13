@@ -28,7 +28,7 @@
         <el-table-column fixed="right" label="操作" width="150">
           <template slot-scope="scope">
             <el-button type="primary" @click="handleClick(scope.row)" size="mini">编辑</el-button>
-            <el-button type="danger" size="mini">删除</el-button>
+            <el-button type="danger" size="mini" @click="add()">删除</el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -69,6 +69,11 @@ export default {
         }
       ]
     };
+  },
+  methods:{
+    add(){
+      console.log(this.$store.state.name)
+    }
   }
 };
 </script>

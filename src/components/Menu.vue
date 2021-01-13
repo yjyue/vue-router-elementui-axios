@@ -1,60 +1,53 @@
 <template>
   <div id="Menu">
     <h3 class="logo-title">系统管理</h3>
-
-    <el-menu :unique-opened="true" :router="true"
+    <div class="toggle-button" @click="toggleCallpse()">|||</div>
+    <el-menu :unique-opened="true" :router="true" :collapse="isCollapse" :collapse-transition="false"
       background-color="#304156"
       text-color="#fff"
       active-text-color="#ffd04b">
-      <el-submenu index="1">
+      <!-- 一级菜单 -->
+      <el-submenu v-for="item in menuList" :key="item.id" :index="item.id">
         <template slot="title">
           <i class="el-icon-location"></i>
-          <span>用户管理</span>
+          <span>{{item.authName}}</span>
         </template>
-        <el-menu-item index="users">
-           <i class="el-icon-location"></i>
-            <span>用户列表</span>
+        <!-- 二级菜单 -->
+        <el-menu-item v-for="sub in item.children" :key="sub.id" :index="sub.path">
+           <i class="el-icon-menu"></i>
+            <span>{{sub.authName}}</span>
         </el-menu-item>
       </el-submenu>
-
-      <el-submenu index="2">
-        <template slot="title">
-          <i class="el-icon-location"></i>
-          <span>权限管理</span>
-        </template>
-        <el-menu-item index="1-1">
-           <i class="el-icon-location"></i>
-            <span>角色列表</span>
-        </el-menu-item>
-        <el-menu-item index="1-1">
-           <i class="el-icon-location"></i>
-            <span>权限列表</span>
-        </el-menu-item>
-      </el-submenu>
-
-      <el-submenu index="3">
-        <template slot="title">
-          <i class="el-icon-location"></i>
-          <span>商品管理</span>
-        </template>
-        <el-menu-item index="1-1">
-           <i class="el-icon-location"></i>
-            <span>商品列表</span>
-        </el-menu-item>
-        <el-menu-item index="1-1">
-           <i class="el-icon-location"></i>
-            <span>商品分类</span>
-        </el-menu-item>
-      </el-submenu>
-
 
     </el-menu>
   </div>
 </template>
 
 <script>
+import { mapState } from "vuex";
 export default {
-  name: "Menu"
+  name: "Menu",
+  data(){
+    return {
+      menuList:[],
+      isCollapse: false
+    }
+  },
+  computed:{
+    ...mapState(['menusList'])
+  },
+  created(){
+    this.menuList = this.menusList
+    console.log(this.menusList)
+  },
+  methods:{
+    toggleCallpse(){
+      this.isCollapse = !this.isCollapse
+      // 传值给父组件
+      this.$emit('child-event',this.isCollapse)
+    }
+  },
+  
 };
 </script>
 
@@ -68,5 +61,14 @@ export default {
     text-align: left;
     padding-left: 30px;
     line-height: 60px;
+  }
+  .toggle-button{
+    background-color: #4A5064;
+    font-size: 10px;
+    line-height: 24px;
+    color: #ffffff;
+    text-align: center;
+    letter-spacing: 0.2em;
+    cursor: pointer;
   }
 </style>
