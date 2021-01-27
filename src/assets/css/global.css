@@ -1,23 +1,38 @@
-/* 表格样式 */
-.mian-container{
-    margin-bottom: 15px;
-    background: #ffffff;
-    padding:10px;
-    padding-bottom: 0;
-  }
-  .from-filter{
-    display: flex;
-  }
-  .from-filter .from-item{
-    width: 200px;
-    margin-right: 10px;
-    flex-wrap:nowrap;
-  }
-  .from-filter .el-form-item{
-    margin-bottom: 12px;
-  }
-  .table-box{
-    padding: 10px;
-    background: #ffffff;
-  }
-/* 表格样式   end------------------------*/
+/* 面包屑导航样式  start */
+.crumbs-container {
+  margin-bottom: 10px;
+  background: #ffffff;
+  padding: 7px;
+}
+.from_crumbs .el-breadcrumb {
+  font-size: 14px;
+  line-height: 33px;
+}
+.from_crumbs .el-col-2 {
+  text-align: right;
+}
+/* 面包屑导航样式  end */
+
+.table_container{
+  padding: 10px;
+  background: #ffffff;
+}
+/* 表格搜索框   */
+.search-container {
+  margin-bottom: 10px;
+}
+.search-item {
+  width: 200px;
+}
+.search-item .el-input__inner {
+  height: 33px;
+  line-height: 33px;
+}
+/* 分页 */
+.pages {
+  width: 100%;
+  padding-top: 10px;
+}
+
+
+

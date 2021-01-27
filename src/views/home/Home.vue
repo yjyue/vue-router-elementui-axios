@@ -1,31 +1,30 @@
 <template>
   <div id="Home" class="Home">
+
     <el-container class="home-container">
-      <!-- 侧边栏 -->
-      <el-aside :width="childCallpse?'64px':'240px'" class="menu">
-        <Menu @child-event="parentMeun"></Menu>
-      </el-aside>
+      <!-- 头部 -->
+      <el-header class="header">
+        <Header></Header>
+      </el-header>
       <el-container>
-        <!-- 头部 -->
-        <el-header class="header">
-          <Header></Header>
-        </el-header>
+          <!-- 侧边栏 -->
+          <Menu></Menu>
         <!-- 内容 -->
         <el-main class="main">
           <router-view></router-view>
         </el-main>
-        <!-- 底部 -->
-        <!-- <el-footer class="foorer"><Footer></Footer></el-footer> -->
+
       </el-container>
     </el-container>
+
   </div>
 </template>
 
 <script>
-// import { mapState } from "vuex";
-import Header from "@/components/Header";
-import Menu from "@/components/Menu";
-import Footer from "@/components/Footer";
+import { mapState } from "vuex";
+import Header from "./components/Header";
+import Menu from "./components/Menu";
+import Footer from "./components/Footer";
 
 export default {
   name: "Home",
@@ -52,22 +51,20 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .Home,
 .home-container {
   height: 100%;
 }
+/* .header{
+  margin-bottom: 5px;
+} */
 .el-header,
 .el-footer {
-  background-color: #b3c0d1;
+  background-color: #304156;
   color: #333;
   line-height: 60px;
 }
-
-.el-aside {
-  background-color: #304156;
-}
-
 .el-main {
   background-color: #e9eef3;
   padding: 10px;

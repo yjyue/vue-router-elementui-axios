@@ -40,59 +40,66 @@ export default {
       }
     }
     return{
+      redirect: undefined,
+      otherQuery: {},
       labelPosition: 'left',
       loginForm: {
         userName: 'admin',
         password: 'Win2008!'
       },
       loginRules: {
-        userName: [{ required: true, trigger: 'blur', validator: validateUsername }],
+        // userName: [{ required: true, trigger: 'blur', validator: validateUsername }],
+        userName: [{ required: true, trigger: 'blur'}],
         password: [{ required: true, trigger: 'blur', validator: validatePassword }]
-      },
-     
+      }
     }
+  },
+  watch: {
+    $route: {
+      handler: function(route) {
+        // console.log(route)
+        // const query = route.query
+        // if (query) {
+        //   this.redirect = query.redirect
+        //   this.otherQuery = this.getOtherQuery(query)
+        // }
+      },
+      immediate: true
+    }
+  },
+  created() {
+
+  },
+  mounted(){
+
   },
   methods:{
     loginSubmit( formName ){
       this.$refs[formName].validate((valid) => {
           if (valid) {
             console.log('验证通过 可以提交登录')
-            // /userapi/app_services/userlogin
-            // let getUserRole = this.loginForm.userName === 'admin'?'admin':'user'
+            // 加载 user.js下得login()进行调登录接口
+            this.$store.dispatch('user/login', this.loginForm).then(() => {
+              this.$router.push({path:'/'}) 
+              // this.loading = false
+            })
+            .catch(() => {
+              // this.loading = false
+            })
 
-            this.$http.post('/userapi/app_services/userlogin',this.loginForm).then((result) => {
-              
-              const res = result.data;
-              console.log(res)
-              if(res.result == true){
-                console.log(res.msg.token)
-                // 存储菜单
-                // this.$store.commit('setMenuList',this.menuList)
-                //存储用户名
-                this.$store.commit('menuRouteLoaded', false) // 要求重新加载导航菜单
-                this.$store.commit('setUsername', this.loginForm.userName)
-                sessionStorage.setItem('setUsername',this.loginForm.userName)
-                sessionStorage.setItem('token',res.msg.token)
-
-                this.$router.push({path:'/home'}) 
-              }
-
-            }).catch((err) => {
-              
-            });
-            // console.log(this.menuList)
             
           } else {
             console.log('error submit!!');
             return false;
           }
         });
-    }
+    },
+    
   }
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
   .login-wrap{
     height: 100%;
     background: #465e7d;
@@ -104,7 +111,6 @@ export default {
     width: 300px;
     background: #fff;
     border: 1px solid #cccccc;
-    
     padding: 30px;
   }
 

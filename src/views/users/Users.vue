@@ -1,26 +1,27 @@
 <template>
   <div class="users">
-    <div class="users-filter mian-container">
-        <!-- <el-input placeholder="请输入内容"></el-input> -->
-        <el-form class="users-from" ref="form" :model="form">
-          <el-row>
-            <el-col :span="22" class="from-filter">
-              <el-form-item class="from-item">
-                <el-input class="item-input" size="small" v-model="form.name" placeholder="输入用户名"></el-input>
-              </el-form-item>
-              
-              <el-form-item>
-                <el-button type="primary" icon="el-icon-search" size="small">搜索</el-button>
-              </el-form-item>
-            </el-col>
-            <el-col :span="2">
-                <el-button type="primary" icon="el-icon-plus" size="small">添加</el-button>
-              </el-col>
-          </el-row>
-        </el-form>
+    <!-- 面包屑 -->
+    <div class="users-filter crumbs-container">
+      <el-form class="users-from from_crumbs" ref="form" :model="form">
+        <el-row>
+          <el-col :span="22">
+            <el-breadcrumb separator-class="el-icon-arrow-right">
+              <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
+              <el-breadcrumb-item>用户列表</el-breadcrumb-item>
+            </el-breadcrumb>
+          </el-col>
+          <el-col :span="2">
+            <el-button type="primary" icon="el-icon-plus" size="small">添加</el-button>
+          </el-col>
+        </el-row>
+      </el-form>
     </div>
     <!-- 表格 -->
-    <div class="table-box">
+    <div class="table_container">
+      <div class="search-container">
+        <el-input placeholder="Title" class="search-item" />
+        <el-button type="primary" icon="el-icon-search" size="small">搜索</el-button>
+      </div>
       <el-table :data="tableData" border style="width: 100%">
         <el-table-column prop="date" label="日期" width="180"></el-table-column>
         <el-table-column prop="name" label="姓名" width="180"></el-table-column>
@@ -33,7 +34,6 @@
         </el-table-column>
       </el-table>
     </div>
-    
   </div>
 </template>
 
@@ -43,8 +43,8 @@ export default {
   data() {
     return {
       msg: "",
-      form:{
-        name:""
+      form: {
+        name: ""
       },
       tableData: [
         {
@@ -70,16 +70,14 @@ export default {
       ]
     };
   },
-  methods:{
-    add(){
-      console.log(this.$store.state.name)
+  methods: {
+    add() {
+      console.log(this.$store.state.name);
     }
   }
 };
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-
-
+<style lang="scss" scoped>
 </style>

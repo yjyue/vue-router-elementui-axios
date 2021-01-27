@@ -5,9 +5,10 @@ import App from './App'
 import router from './router'
 import ElementUI from 'element-ui'
 import axios from 'axios'
+
 import store from './store'
 
-
+import './permission'//权限菜单
 
 import 'element-ui/lib/theme-chalk/index.css'
 
@@ -16,10 +17,13 @@ import "./assets/css/global.css"
 
 Vue.prototype.$http = axios
 
-axios.defaults.baseURL  =  '/api' //上线注释
+//开发环境下才会引入mockjs
+process.env.Mock && require('./mock/index.js')
+
+
+
 
 Vue.config.productionTip = false
-
 Vue.use(ElementUI)
 
 /* eslint-disable no-new */
